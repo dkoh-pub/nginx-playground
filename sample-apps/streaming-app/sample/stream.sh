@@ -1,0 +1,2 @@
+echo "Starting stream"
+ffmpeg -re -i ~/Work/nginx-playground/sample-apps/streaming-app/sample/sample.mp4 -vcodec copy -loop -1 -c:a aac -b:a 160k -ar 44100 -strict -2 -f flv rtmp://10.1.1.5/live/stream1

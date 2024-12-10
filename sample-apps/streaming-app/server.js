@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require('express'); //npm i express
 const path = require('path');
 const fs = require('fs');
-
 const app = express();
 const PORT = 3010;
+const {exec} = require('child_process');
 
 app.use(express.static('public'));
 
@@ -33,6 +33,16 @@ app.get('/video', (req, res) => {
             'Content-Type': 'video/mp4',
         });
         fs.createReadStream(filePath).pipe(res);
+    }
+});
+
+const ffmpegScript = path.join(__dirname, 'sample', 'stream.sh');
+
+var triggerFfmpeg = exec("sh " + ffmpegScript, (error, stdout, stderr) => {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+        console.log('exec error: ' + error);
     }
 });
 
