@@ -3,12 +3,12 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3010;
 
 app.use(express.static('public'));
 
 app.get('/video', (req, res) => {
-    const filePath = path.join(__dirname, 'public', 'video.mp4');
+    const filePath = path.join(__dirname, 'sample', 'sample.mp4');
     const stat = fs.statSync(filePath);
     const fileSize = stat.size;
     const range = req.headers.range;
